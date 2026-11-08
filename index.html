@@ -106,7 +106,6 @@
             padding: 24px;
         }
 
-        /* ===== LOGO + CIRCULAR LOADING RING ===== */
         .welcome-logo-wrap {
             position: relative;
             display: flex;
@@ -120,13 +119,9 @@
         }
 
         @keyframes logoWrapIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* SVG circular progress ring */
         .progress-ring {
             position: absolute;
             top: 0;
@@ -148,11 +143,10 @@
             stroke: #4d7fff;
             stroke-width: 3;
             stroke-linecap: round;
-            stroke-dasharray: 628; /* circumference for r=100 */
+            stroke-dasharray: 628;
             stroke-dashoffset: 628;
         }
 
-        /* Ring dekoratif tipis yang terus berputar */
         .spinner-ring {
             position: absolute;
             top: 50%;
@@ -178,15 +172,9 @@
             animation: spinRingReverse 2.5s linear infinite;
         }
 
-        @keyframes spinRing {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spinRing { to { transform: rotate(360deg); } }
+        @keyframes spinRingReverse { to { transform: rotate(-360deg); } }
 
-        @keyframes spinRingReverse {
-            to { transform: rotate(-360deg); }
-        }
-
-        /* Logo di tengah */
         .welcome-logo {
             width: 120px;
             height: 120px;
@@ -234,13 +222,9 @@
         }
 
         @keyframes welcomeTextIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Info persen loading */
         .welcome-loading-percent {
             margin-top: 24px;
             font-size: 13px;
@@ -255,7 +239,7 @@
         /* ===== MAIN APP ===== */
         .main-app {
             opacity: 0;
-            transition: opacity 0.6s var(--ease-smooth) 0.15s;
+            transition: opacity 0.5s var(--ease-smooth);
         }
 
         .main-app.visible {
@@ -764,6 +748,160 @@
 
         .footer strong { color: var(--text-secondary); font-weight: 600; }
 
+        /* ============================================================
+           ENTRANCE ANIMATIONS — HANYA AKTIF SETELAH WELCOME SELESAI
+           ============================================================ */
+
+        /* Default: semua elemen tersembunyi sebelum animasi dimulai */
+        .main-app .topbar {
+            opacity: 0;
+            transform: translateY(-16px);
+            filter: blur(4px);
+        }
+        .main-app .brand-logo {
+            opacity: 0;
+            transform: scale(0.7) rotate(-8deg);
+        }
+        .main-app .brand-info h1 {
+            opacity: 0;
+            transform: translateX(-8px);
+        }
+        .main-app .brand-info p,
+        .main-app .clock-date {
+            opacity: 0;
+        }
+        .main-app .topbar-right {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+        .main-app .hero-eyebrow {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        .main-app .hero-title {
+            opacity: 0;
+            transform: translateY(14px);
+            filter: blur(3px);
+        }
+        .main-app .hero-desc {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        .main-app .section-head {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .main-app .menu-card {
+            opacity: 0;
+            transform: translateY(24px) scale(0.97);
+            filter: blur(4px);
+        }
+        .main-app .menu-card .card-icon {
+            opacity: 0;
+            transform: scale(0.6) rotate(-10deg);
+        }
+        .main-app .menu-card h4,
+        .main-app .menu-card p,
+        .main-app .card-badge,
+        .main-app .card-footer {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+        .main-app .footer {
+            opacity: 0;
+        }
+
+        /* Trigger: animasi jalan saat class .visible ditambahkan */
+        .main-app.visible .topbar {
+            animation: animTopbar 0.8s var(--ease-out-expo) 0.1s forwards;
+        }
+        .main-app.visible .brand-logo {
+            animation: animLogo 0.7s var(--ease-out-quint) 0.35s forwards;
+        }
+        .main-app.visible .brand-info h1 {
+            animation: animSlideX 0.6s var(--ease-out-expo) 0.45s forwards;
+        }
+        .main-app.visible .brand-info p {
+            animation: animFade 0.5s var(--ease-out-expo) 0.6s forwards;
+        }
+        .main-app.visible .topbar-right {
+            animation: animSlideXRight 0.7s var(--ease-out-expo) 0.5s forwards;
+        }
+        .main-app.visible .clock-date {
+            animation: animFade 0.5s var(--ease-out-expo) 0.6s forwards;
+        }
+        .main-app.visible .hero-eyebrow {
+            animation: animSlideY 0.6s var(--ease-out-expo) 0.7s forwards;
+        }
+        .main-app.visible .hero-title {
+            animation: animHeroTitle 0.8s var(--ease-out-expo) 0.85s forwards;
+        }
+        .main-app.visible .hero-desc {
+            animation: animSlideY 0.7s var(--ease-out-expo) 1.05s forwards;
+        }
+        .main-app.visible .section-head {
+            animation: animSlideY 0.6s var(--ease-out-expo) 1.2s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(1) {
+            animation: animCard 0.8s var(--ease-out-expo) 1.4s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(2) {
+            animation: animCard 0.8s var(--ease-out-expo) 1.55s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(1) .card-icon {
+            animation: animIcon 0.6s var(--ease-out-quint) 1.85s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(2) .card-icon {
+            animation: animIcon 0.6s var(--ease-out-quint) 2.0s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(1) h4,
+        .main-app.visible .menu-card:nth-child(1) p,
+        .main-app.visible .menu-card:nth-child(1) .card-badge,
+        .main-app.visible .menu-card:nth-child(1) .card-footer {
+            animation: animCardText 0.5s var(--ease-out-expo) 1.95s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(2) h4,
+        .main-app.visible .menu-card:nth-child(2) p,
+        .main-app.visible .menu-card:nth-child(2) .card-badge,
+        .main-app.visible .menu-card:nth-child(2) .card-footer {
+            animation: animCardText 0.5s var(--ease-out-expo) 2.1s forwards;
+        }
+        .main-app.visible .footer {
+            animation: animFade 0.6s var(--ease-out-expo) 2.3s forwards;
+        }
+
+        /* Keyframes */
+        @keyframes animTopbar {
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        @keyframes animLogo {
+            to { opacity: 1; transform: scale(1) rotate(0); }
+        }
+        @keyframes animSlideX {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes animSlideXRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes animFade {
+            to { opacity: 1; }
+        }
+        @keyframes animSlideY {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes animHeroTitle {
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        @keyframes animCard {
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes animIcon {
+            to { opacity: 1; transform: scale(1) rotate(0); }
+        }
+        @keyframes animCardText {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ===== IFRAME MODAL ===== */
         .iframe-modal {
             position: fixed;
@@ -992,15 +1130,12 @@
     <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-content">
             <div class="welcome-logo-wrap">
-                <!-- SVG progress ring -->
                 <svg class="progress-ring" viewBox="0 0 220 220">
                     <circle class="progress-ring__track" cx="110" cy="110" r="100"></circle>
                     <circle class="progress-ring__progress" id="progressRing" cx="110" cy="110" r="100"></circle>
                 </svg>
-                <!-- Spinner dekoratif -->
                 <div class="spinner-ring"></div>
                 <div class="spinner-ring secondary"></div>
-                <!-- Logo -->
                 <div class="welcome-logo">
                     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBz2OfbFnOBtqYgUelV2ehatIKLAL0M-FirBINPJMKY-t1NtwoKG5xOxBr6PPy5X_qn1Cf1eP2AaMtFd6BAPeT1FjGH6l4V5qVWco744r5eVGqAKwaos-E0EFF-sUp4LhBb8KetrGIiZLWln8bVDL5ZTdkLmcyKwHFTw7JfAxcO6l8htRyP_D6w45Ojkgc/s1600/pt-trimatra-liguna-629.jpg" alt="Logo PT Trimatra Liguna">
                 </div>
@@ -1017,7 +1152,6 @@
         <div class="bg-glow"></div>
         <div class="bg-grid"></div>
 
-        <!-- Floating Top Bar -->
         <div class="topbar-wrap" id="topbarWrap">
             <header class="topbar">
                 <div class="brand">
@@ -1044,7 +1178,6 @@
         </div>
 
         <div class="page">
-            <!-- Hero -->
             <section class="hero">
                 <div class="hero-eyebrow">
                     <i class="fas fa-bolt"></i> Sistem Terintegrasi
@@ -1058,7 +1191,6 @@
                 </p>
             </section>
 
-            <!-- Menu Section -->
             <div class="section-head">
                 <div class="section-head-left">
                     <h3><i class="fas fa-grip"></i> Menu Aplikasi</h3>
@@ -1067,7 +1199,6 @@
             </div>
 
             <div class="menu-grid">
-                <!-- Menu 1: Monitor Gudang -->
                 <div class="menu-card" id="menuGudang"
                      data-url="https://pendingproject.github.io/Gudang-trimatra-liguna/"
                      data-title="Monitor Gudang">
@@ -1085,7 +1216,6 @@
                     </div>
                 </div>
 
-                <!-- Menu 2: Permintaan Barang -->
                 <div class="menu-card" id="menuPermintaanBarang"
                      data-url="https://docs.google.com/spreadsheets/d/1-IpX2J2KgMXU2EGQ44bmCay-nYHezI5A/edit?usp=sharing&ouid=101435420948741044895&rtpof=true&sd=true"
                      data-title="Permintaan Barang">
@@ -1104,7 +1234,6 @@
                 </div>
             </div>
 
-            <!-- Footer -->
             <footer class="footer">
                 © <span id="year"></span> <strong>PT Trimatra Liguna</strong> — All rights reserved. &nbsp;·&nbsp; v1.0.0
             </footer>
@@ -1147,48 +1276,44 @@
             'use strict';
 
             /* ============================================
-               WELCOME SCREEN — 4 DETIK DENGAN CIRCULAR LOADING
+               WELCOME SCREEN — 4 DETIK
                ============================================ */
             const welcomeScreen = document.getElementById('welcomeScreen');
             const mainApp = document.getElementById('mainApp');
             const loadingPercent = document.getElementById('loadingPercent');
             const progressRing = document.getElementById('progressRing');
-            const WELCOME_DURATION = 4000; // 4 detik
+            const WELCOME_DURATION = 4000;
 
             document.body.style.overflow = 'hidden';
 
-            // Update persentase teks & ring secara halus (requestAnimationFrame)
             const startTime = performance.now();
-            const CIRCUMFERENCE = 2 * Math.PI * 100; // r=100 → 628.32
+            const CIRCUMFERENCE = 2 * Math.PI * 100;
 
             function updateLoading(now) {
                 const elapsed = now - startTime;
                 const progress = Math.min(elapsed / WELCOME_DURATION, 1);
-
-                // Update teks persen
                 const percent = Math.floor(progress * 100);
                 loadingPercent.textContent = percent + '%';
-
-                // Update SVG ring stroke-dashoffset (sinkron dengan progress)
-                const offset = CIRCUMFERENCE * (1 - progress);
-                progressRing.style.strokeDashoffset = offset;
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateLoading);
-                }
+                progressRing.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
+                if (progress < 1) requestAnimationFrame(updateLoading);
             }
             requestAnimationFrame(updateLoading);
 
-            // Timer: 4 detik → transition ke main app
+            // Setelah 4 detik → transisi ke main app
             setTimeout(() => {
                 welcomeScreen.classList.add('hide');
-                mainApp.classList.add('visible');
-                document.body.classList.remove('loading');
-                document.body.style.overflow = '';
+
+                // Beri jeda kecil agar welcome mulai fade-out dulu,
+                // lalu trigger animasi entrance main app
+                setTimeout(() => {
+                    mainApp.classList.add('visible');
+                    document.body.classList.remove('loading');
+                    document.body.style.overflow = '';
+                }, 150);
 
                 setTimeout(() => {
                     welcomeScreen.remove();
-                }, 800);
+                }, 900);
             }, WELCOME_DURATION);
 
             /* ============================================
