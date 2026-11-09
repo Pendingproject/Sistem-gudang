@@ -848,11 +848,17 @@
         .main-app.visible .menu-card:nth-child(2) {
             animation: animCard 0.8s var(--ease-out-expo) 1.55s forwards;
         }
+        .main-app.visible .menu-card:nth-child(3) {
+            animation: animCard 0.8s var(--ease-out-expo) 1.7s forwards;
+        }
         .main-app.visible .menu-card:nth-child(1) .card-icon {
             animation: animIcon 0.6s var(--ease-out-quint) 1.85s forwards;
         }
         .main-app.visible .menu-card:nth-child(2) .card-icon {
             animation: animIcon 0.6s var(--ease-out-quint) 2.0s forwards;
+        }
+        .main-app.visible .menu-card:nth-child(3) .card-icon {
+            animation: animIcon 0.6s var(--ease-out-quint) 2.15s forwards;
         }
         .main-app.visible .menu-card:nth-child(1) h4,
         .main-app.visible .menu-card:nth-child(1) p,
@@ -866,8 +872,14 @@
         .main-app.visible .menu-card:nth-child(2) .card-footer {
             animation: animCardText 0.5s var(--ease-out-expo) 2.1s forwards;
         }
+        .main-app.visible .menu-card:nth-child(3) h4,
+        .main-app.visible .menu-card:nth-child(3) p,
+        .main-app.visible .menu-card:nth-child(3) .card-badge,
+        .main-app.visible .menu-card:nth-child(3) .card-footer {
+            animation: animCardText 0.5s var(--ease-out-expo) 2.25s forwards;
+        }
         .main-app.visible .footer {
-            animation: animFade 0.6s var(--ease-out-expo) 2.3s forwards;
+            animation: animFade 0.6s var(--ease-out-expo) 2.45s forwards;
         }
 
         /* Keyframes */
@@ -1194,7 +1206,7 @@
             <div class="section-head">
                 <div class="section-head-left">
                     <h3><i class="fas fa-grip"></i> Menu Aplikasi</h3>
-                    <span class="section-badge">2 modul tersedia</span>
+                    <span class="section-badge">3 modul tersedia</span>
                 </div>
             </div>
 
@@ -1230,6 +1242,23 @@
                     <div class="card-footer">
                         <span class="card-action">Buka Spreadsheet <i class="fas fa-arrow-right"></i></span>
                         <span class="card-meta"><i class="fas fa-file-excel"></i> Sheets</span>
+                    </div>
+                </div>
+
+                <div class="menu-card" id="menuPelacakLokasi"
+                     data-url="https://portal.mceasy.com/login"
+                     data-title="Pelacak Lokasi">
+                    <div class="card-top">
+                        <div class="card-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <span class="card-badge">Aktif</span>
+                    </div>
+                    <h4>Pelacak Lokasi</h4>
+                    <p>Lacak posisi dan status kendaraan pengiriman secara real-time melalui portal McEasy.</p>
+                    <div class="card-footer">
+                        <span class="card-action">Buka Pelacakan <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-meta"><i class="fas fa-satellite-dish"></i> McEasy</span>
                     </div>
                 </div>
             </div>
